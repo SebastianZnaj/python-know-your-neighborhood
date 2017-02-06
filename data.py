@@ -7,6 +7,7 @@ class Data:
 
     @classmethod
     def csv_to_list(cls):
+        """Import data from csv"""
         with open("malopolska.csv", "r") as f:
             reader = csv.reader(f)
             for line in reader:
@@ -14,6 +15,7 @@ class Data:
 
     @classmethod
     def get_area_count(cls):
+        """Counts number of all areas"""
         wojewodztwo_count = 0
         powiat_count = 0
         gmina_miejska_count = 0
@@ -22,6 +24,7 @@ class Data:
         obszar_wiejski_count = 0
         miasto_count = 0
         miasto_na_prawach_count = 0
+        delegatura_count = 0
 
         for area in cls.areas_list:
             if area.typ == "województwo":
@@ -40,4 +43,6 @@ class Data:
                 miasto_count += 1
             elif area.typ == "miasto na prawach powiatu":
                 miasto_na_prawach_count += 1
-        return powiat_count, gmina_miejska_count, gmina_wiejska_count, gmina_miejsko_wiejska_count, obszar_wiejski_count, miasto_count, miasto_na_prawach_count
+            elif area.typ == "delegatura":
+                delegatura_count += 1
+        return wojewodztwo_count, powiat_count, gmina_miejska_count, gmina_wiejska_count, gmina_miejsko_wiejska_count, obszar_wiejski_count, miasto_count, miasto_na_prawach_count, delegatura_count
