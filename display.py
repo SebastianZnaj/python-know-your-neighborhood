@@ -50,7 +50,6 @@ class Display:
         for i, area_name in enumerate(cls.main1_elements):
                 row = cls.fill_with_spaces(str(values[i]), 4) + cls.fill_with_spaces(area_name, Display.main1_headers[2]) + "\n"
                 middle += separator + row
-
         return top_and_bottom + table_name + middle + top_and_bottom
 
     @classmethod
@@ -66,10 +65,8 @@ class Display:
         middle = ""
         separator = "|" + Display.main2_headers[1] * "-" + "++" + (Display.main2_headers[2]-1) * "-" + "|\n"
         for i, name in enumerate(long_names):
-                row = cls.fill_with_spaces(str(i+1), 4) + cls.fill_with_spaces(name, Display.main2_headers[2]) + "\n"
+                row = cls.fill_with_spaces(str(i+1) + ".", 4) + cls.fill_with_spaces(name, Display.main2_headers[2]) + "\n"
                 middle += separator + row
-
-
         return top_and_bottom + table_name + middle + top_and_bottom
 
 
