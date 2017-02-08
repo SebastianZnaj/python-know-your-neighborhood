@@ -1,4 +1,5 @@
 class Area:
+    """All locations will be created from this class"""
 
     def __init__(self, woj, pow, gmi, rgmi, nazwa, typ):
         self.woj = woj

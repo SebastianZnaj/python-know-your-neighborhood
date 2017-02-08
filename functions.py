@@ -41,6 +41,18 @@ class Functions:
                 filtered_objects.append(obj)
         return filtered_objects
 
+    @classmethod
+    def advance_search(cls, object_list, name):
+        """Find inputted phrase in location names"""
+        find_objects = []
+        for obj in object_list:
+            if name in obj.nazwa:
+                find_objects.append(obj)
+        find_objects.sort(key=lambda x: x.nazwa)
+        return find_objects
+
+
+
 
 
 
