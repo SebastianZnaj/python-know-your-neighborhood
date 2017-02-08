@@ -1,5 +1,4 @@
 from collections import Counter
-import operator
 
 
 class Functions:
@@ -15,6 +14,7 @@ class Functions:
 
     @classmethod
     def county_with_largest_communities(cls, object_list):
+        """Search for name county with largest number of communities"""
         pow_values = []
         for area in object_list:
             pow_values.append(area.pow)
@@ -23,4 +23,24 @@ class Functions:
         for area in object_list:
             if area.pow == max_key and area.typ == "powiat":
                 return [area.nazwa]
+
+    @classmethod
+    def location_belonging(cls, object_list):
+        """Find location that belong to more than one community"""
+        list_of_names = []
+        for area in object_list:
+            list_of_names.append(area.nazwa)
+        counter = dict(Counter(list_of_names))
+        filtered = []
+        for name in counter:
+            if counter[name] > 1:
+                filtered.append(name)
+        filtered_objects = []
+        for obj in object_list:
+            if obj.nazwa in filtered:
+                filtered_objects.append(obj)
+        return filtered_objects
+
+
+
 

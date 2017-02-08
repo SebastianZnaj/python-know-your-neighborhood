@@ -24,7 +24,8 @@
 class Display:
     main1_headers = [35, 3, 32]
     main1_elements = ["województwo", "powiaty", "gmina miejska", "gmina wiejska", "gmina miejsko-wiejska", "obszar wiejski", "miasto", "miasto na prawach powiatu", "delagatura"]
-    main2_headers = [30, 3, 27]
+    main2_headers = [30, 5, 25]
+    main3_headers = [52, 5, 25, 27]
 
 
     @staticmethod
@@ -65,8 +66,23 @@ class Display:
         middle = ""
         separator = "|" + Display.main2_headers[1] * "-" + "++" + (Display.main2_headers[2]-1) * "-" + "|\n"
         for i, name in enumerate(long_names):
-                row = cls.fill_with_spaces(str(i+1) + ".", 4) + cls.fill_with_spaces(name, Display.main2_headers[2]) + "\n"
+                row = cls.fill_with_spaces(str(i+1) + ".", 6) + cls.fill_with_spaces(name, Display.main2_headers[2]) + "\n"
                 middle += separator + row
         return top_and_bottom + table_name + middle + top_and_bottom
 
+    @classmethod
+    def display_table_3(cls, title, object_list):  # argument is a list of objects
+        """Print table with title as a list of str and object list as an argument"""
+        # top/bottom
+        top_and_bottom = "%s" % chr(0x26e8) + (Display.main2_headers[0] + Display.main2_headers[2] +2 ) * "-" + "%s\n" % chr(0x26e8)
 
+        # title
+        table_name = "|Lp. |" + cls.fill_with_spaces(title[0], Display.main3_headers[2]) + cls.fill_with_spaces(title[1], Display.main3_headers[3]) + "\n"
+
+        # middle
+        middle = ""
+        separator = "|" + (Display.main3_headers[1]-1) * "-" + "++" + (Display.main3_headers[2]-1) * "-" + "++" + + (Display.main3_headers[3]-1) * "-" + "|\n"
+        for i, obj in enumerate(object_list):
+                row = cls.fill_with_spaces(str(i + 1) + ".", Display.main3_headers[1]) + cls.fill_with_spaces(obj.nazwa, Display.main3_headers[2]) +cls.fill_with_spaces(obj.typ, Display.main3_headers[3]) + "\n"
+                middle += separator + row
+        return top_and_bottom + table_name + middle + top_and_bottom
